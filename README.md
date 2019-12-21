@@ -79,6 +79,19 @@ Delete pod:
 
 kubectl delete pods hello-pod
 
+Add kubernetes service :
+
+kubectl expose rc hello-rc --name=hello-svc --target-port=8080 --type=NodePort
+
+
+Describe service:
+
+kubectl describe svc hello-svc
+
+Get services:
+
+kubectl get svc
+
 ```
 pod.yml file is [here]()
 
