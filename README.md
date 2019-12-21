@@ -36,7 +36,7 @@ Minikube installation steps can be found [here](https://kubernetes.io/docs/tasks
 In home edition Windows OS we can't use hyper-V instead we can install virtual box (Orcale VM)
 
 ####  Commands:
-
+```
 minikube start --vm-driver=virtualbox
 
 minikube status
@@ -46,7 +46,7 @@ minikube dashboard
 kubectl get nodes
 
 kubectl get pods --all-namespaces
-
+```
 
 username/password to connet to minikube in virtualbox: docker/tcuser
 
@@ -54,11 +54,32 @@ username/password to connet to minikube in virtualbox: docker/tcuser
 
 https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows
 
-
+Kubectl is kubernetes client. Independent of undelying infrastracture used. Underlying intra could be minikube, GKE, AWS of physical machine
 
 Atomic unit of scheduling in kubernetes is pod
 
 Pod can contain one or more containers
 
 pods get scheduled on nodes
+
+One pod gets desployed on one node only
+
+Deploy First pod:
+
+```
+Create pod :
+
+kubectl create -f pod.yml
+
+Get pods:
+
+kubectl get pods
+
+Delete pod:
+
+kubectl delete pods hello-pod
+
+```
+pod.yml file is [here]()
+
 
