@@ -10,7 +10,7 @@ Kubernetes = k8s
 
 Kubernetes architecture consists of Masters and nodes (minions or worker nodes).
 
-Diagram below:
+Diagram and expalination [here](https://phoenixnap.com/kb/understanding-kubernetes-architecture-diagrams)
 
 
 
@@ -79,7 +79,7 @@ Delete pod:
 
 kubectl delete pods hello-pod
 
-Add kubernetes service :
+Add kubernetes service (this can also be done via manifest file see svc.yml):
 
 kubectl expose rc hello-rc --name=hello-svc --target-port=8080 --type=NodePort
 
@@ -92,7 +92,33 @@ Get services:
 
 kubectl get svc
 
-```
-pod.yml file is [here]()
+To get the service url from minikube:
 
+minikube service hello-svc --url
+
+Get endpoints:
+
+kubectl get ep
+
+
+```
+pod.yml file is [here](https://github.com/goutamsh/kubernetes-learning/blob/master/pod_manifest/pod.yml)
+
+With minikube we can create only cluster with only one node.
+
+Creating service in declarative way via manifest file  (i.e svc.yml)
+```
+kubectl create -f svc.yml
+```
+
+#### Kubernetes Deployments:
+
+Deployment is another type of kubernetes object, helpful for updates and rollbaks
+```
+kubectl create -f deployment.yml
+
+Get replication sets:
+kubectl get rs
+
+```
 
