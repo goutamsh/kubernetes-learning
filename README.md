@@ -120,5 +120,9 @@ kubectl create -f deployment.yml
 Get replication sets:
 kubectl get rs
 
+
+Stop minikube:
+minikube stop
+
 ```
 
