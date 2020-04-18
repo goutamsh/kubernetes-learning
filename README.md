@@ -6,12 +6,46 @@ Kubernetes was originally incubated in Google.
 
 Kubernetes = k8s
 
+K8s allows us to-
+1. orchestrate containers
+2. View dataceneter as one computer, as a developer we don't care about which node our conatiner/app runs
+
+
 ## Architecture of Kubernetes
 
 Kubernetes architecture consists of Masters and nodes (minions or worker nodes).
+Kubernetes Cluster = masters + nodes
 
 Diagram and expalination [here](https://phoenixnap.com/kb/understanding-kubernetes-architecture-diagrams)
 
+
+###Master:
+master = apiserver + cluster store (Key-value store, NoSQL) + Controller manager + Scheduler 
+apiserver : is the front-end of the cluster and is the only component we talk to from outside
+scheduler : is responsible for scheduling work to nodes, maintains resources etc
+cluster store : is the memory of k8s cluster
+Controller manager : controls nodes, endpoints etc
+
+###Node:
+Node = Kubelet + container Engine + kube proxy
+Kubelet : k8s agent for node, observes apiserver (of master) for work assignements, reports back to master about the status
+Conatiner Engine: Container mangement, pulls images, starts/stops container
+Kube proxy : kubernetes networking, assigning IP for individual pod, one IP per pod, all containers within the pod share same IP.
+			Also does the load balancing for services
+
+###POD:
+POD : atomic unit of deployment and is a bunch of containers, also atomic unit for scaling,
+It's only available when it's completely ready.
+A pod resides only on one node, it can't be on multiple nodes at the same time.
+container always runs inside the pods
+
+###Replication Controller:
+k8s objects used to scale pods and maintain desired state
+
+###Services:
+Services k8s REST objects just like pod and deployment, that provide stable IPs and dns names in the world of uncertain pods.
+They leverage the labels to route traffic to pods.
+load balances the traffic to multiple pods
 
 
 ## How to Install Kubernetes:
