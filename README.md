@@ -34,16 +34,25 @@ Kube proxy : kubernetes networking, assigning IP for individual pod, one IP per 
 			Also does the load balancing for services
 
 ### POD:
-POD : atomic unit of deployment and is a bunch of containers, also atomic unit for scaling,
+POD : atomic unit of deployment/scheduling and can contain one or more containers, also atomic unit for scaling,
 It's only available when it's completely ready.
-A pod resides only on one node, it can't be on multiple nodes at the same time.
-container always runs inside the pods
+A pod resides only on one node, it can't be on multiple nodes at the same time, meaning it can't be like half of the pod is in one node and another half in another node. 
+container always runs inside the pods.
+All the conatiners in a pod share single IP and they can't share same port inside same pod. Those containers also share same network namespace, cgroup and namespace.
+The inter pod communication takes place through pod network.
+Intra pod communication within the same pod between the conatiner happens using localhost.
+Pods get defined declaratively in the manefest file.
+
 
 ### Replication Controller:
-k8s objects used to scale pods and maintain desired state
+k8s objects used to scale pods and maintain desired state.
+K8s continuously run background reconciliation loop to check and match the actual state to the desired state.
 
 ### Services:
-Services k8s REST objects just like pod and deployment, that provide stable IPs and dns names in the world of uncertain pods.
+Services k8s REST objects just like pod and deployment, that provide stable IP, dns name and port in the world of uncertain pods. 
+The IP, dns name and port do not change for a service.
+It just provides abstraction. Services provide the stable way of accessing the pods using single IP, dns and port.
+
 They leverage the labels to route traffic to pods.
 load balances the traffic to multiple pods
 
@@ -92,13 +101,6 @@ https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windo
 
 Kubectl is kubernetes client. Independent of undelying infrastracture used. Underlying intra could be minikube, GKE, AWS of physical machine
 
-Atomic unit of scheduling in kubernetes is pod
-
-Pod can contain one or more containers
-
-pods get scheduled on nodes
-
-One pod gets desployed on one node only
 
 Deploy First pod:
 
@@ -110,10 +112,20 @@ kubectl create -f pod.yml
 Get pods:
 
 kubectl get pods
+kubectl get pods/hello-pod
+kubectl get pods --all-namespaces
 
 Delete pod:
 
 kubectl delete pods hello-pod
+
+Get replication controllers:
+
+kubectl get rc
+
+Update changes to yml file:
+
+kubectl apply -f replicationController.yml
 
 Add kubernetes service (this can also be done via manifest file see svc.yml):
 
