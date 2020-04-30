@@ -42,6 +42,26 @@ All the conatiners in a pod share single IP and they can't share same port insid
 The inter pod communication takes place through pod network.
 Intra pod communication within the same pod between the conatiner happens using localhost.
 Pods get defined declaratively in the manefest file.
+Pods live and die but never come back to life.
+When pods are created they get IP address which is known as cluter IP, which is accessible only from within the cluster. If we want to expose the pod service outside the cluster we need to use port forwarding.
+Pod can be created in following ways
+
+1. using kubectl run command (Imperative style meaning we tell how exactly to create with the instructions.)
+
+kubectl run [podname] --image=nginx:alpine
+
+kubectl port-forward [podname] 8080:80
+
+(externalIP:internalIP)
+
+If pod is created with kubectl run command it's actually created with k8s deployment so id we try to delete the pod directly it gets re-created, instead we have to delete the deployment.
+
+2. using kubectl create/apply command (Declarative style using yaml file where we mention what we want and leave how it's done)
+
+kubectl create -f <filename.yml> --save-config --dry-run
+
+kubectl apply -f <filname.yml>
+
 
 
 ### Replication Controller:
