@@ -62,7 +62,10 @@ kubectl create -f <filename.yml> --save-config --dry-run
 
 kubectl apply -f <filname.yml>
 
+To check the health of pod we can use probes like livenessprobe and readynessprode.
+Depending on the livenessprobe the conatainer in the pod gets restarted.
 
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 
 ### Replication Controller:
 k8s objects used to scale pods and maintain desired state.

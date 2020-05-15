@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: springboot-test
+ labels:
+    app: my-app 
+        
+spec:
+ containers:
+ - name: spring-web
+   image: goutamsh/springboot-with-docker
+   ports:
+    - name: web
+      containerPort: 80
+      protocol: TCP
+      
