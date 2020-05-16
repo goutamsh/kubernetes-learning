@@ -8,6 +8,7 @@ spec:
    image: goutamsh/springboot-with-docker
    command: ["printenv"]
    args: ["GREETING_MSG", "APP_NAME"]
+   restartPolicy: OnFailure
    env:
     - name: GREETING_MSG
       value: "Hello from environment variable"
