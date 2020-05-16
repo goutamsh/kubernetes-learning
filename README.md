@@ -67,6 +67,7 @@ Depending on the livenessprobe the conatainer in the pod gets restarted.
 
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 
+
 ### Replication Controller:
 k8s objects used to scale pods and maintain desired state.
 K8s continuously run background reconciliation loop to check and match the actual state to the desired state.
@@ -196,4 +197,15 @@ Stop minikube:
 minikube stop
 
 ```
+
+### Misc with hands-on
+
+To work with environment variables
+
+k create -f https://raw.githubusercontent.com/goutamsh/kubernetes-learning/master/samples/pod_check_env_var.yml --save-config
+
+
+k exec -it alpine-test sh
+
+printenv
 
