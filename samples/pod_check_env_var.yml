@@ -5,7 +5,7 @@ metadata:
 spec:
  containers:
  - name: alpine
-   image: alpine
+   image: goutamsh/springboot-with-docker
    env:
     - name: GREETING_MSG
       value: "Hello from environment variable"
